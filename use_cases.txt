@@ -1,0 +1,64 @@
+USE CASES
+
+
+UC1: Add Teams
+Actor: Organizer
+Preconditions: App is open.
+Main Flow: Organizer adds team names to the participant list.
+Alternative Flows: Organizer can remove a team before generating.
+Postconditions: Team list is ready to schedule.
+Acceptance Criteria: Teams can be added and removed freely before generation.
+
+
+UC2: Choose a Format
+Actor: Organizer
+Preconditions: App is open.
+Main Flow: Organizer picks round robin, single elimination, or Swiss.
+Postconditions: A format is set.
+Acceptance Criteria: Only one format is active at a time.
+
+
+UC3: Generate a Schedule
+Actor: Organizer
+Preconditions: At least two teams, no duplicate names, a format chosen.
+Main Flow: Organizer requests a schedule; system builds all rounds/matches.
+Alternative Flows: Too few teams or duplicate names -> request rejected.
+Postconditions: A schedule exists to view.
+Acceptance Criteria: No invalid schedule is ever produced.
+
+
+UC4: Play a Match
+Actor: Organizer
+Preconditions: A match has both teams assigned.
+Main Flow: Organizer starts the match, then records each team's score.
+Alternative Flows: Equal scores rejected (no draws).
+Postconditions: Match is completed with a winner.
+Acceptance Criteria: A match can't be completed before starting or twice.
+
+
+UC5: Bracket Progression
+Actor: System
+Preconditions: Format is single elimination.
+Main Flow: Winner of a completed match advances to the next round slot.
+Alternative Flows: A bye advances automatically without a game.
+Postconditions: Rounds fill in until one winner remains.
+Acceptance Criteria: No manual pairing needed for later rounds.
+
+
+UC6: Use the Library Outside the App
+Actor: Developer
+Preconditions: Library is installed.
+Main Flow: Developer generates a tournament directly from their own script.
+Postconditions: A tournament object is returned.
+Acceptance Criteria: Works with zero dependency on the app.
+
+
+UC7: Adjust the Live Score
+Actor: Organizer
+Preconditions: A match is in progress.
+Main Flow: Organizer taps +/- to update either team's score while a 60-second
+clock runs, then clicks Finish.
+Alternative Flows: Clock reaches zero -> +/- buttons lock, Finish still works.
+Tied score at Finish -> rejected, buttons unlock so the tie can be broken.
+Postconditions: Match is completed with the final live score.
+Acceptance Criteria: Score can't go negative; a tie can never be finished.
