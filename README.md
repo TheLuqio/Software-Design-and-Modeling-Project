@@ -1,6 +1,6 @@
 # BracketForge
 
-A tournament fixture-scheduling library with a small Tkinter desktop app
+A tournament fixture scheduling library with a small Tkinter desktop app
 built on top of it, for entering teams and watching the schedule play out.
 
 ## Elevator pitch
